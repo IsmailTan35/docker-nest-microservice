@@ -1,0 +1,50 @@
+version: "3.8"
+
+services:
+  gateway:
+    image: gateway
+    container_name: gateway
+    restart: always
+    build:
+      context: gateway
+      target: development
+      dockerfile: Dockerfile.dev
+    ports:
+      - 3000:3000
+    depends_on:
+      - primary
+      -secondary
+    volumes:
+      - ./gateway:/usr/local/apps/gateway/dev
+      - exclude:/usr/local/app/gateway/dev/node_modules/
+
+  primary:
+    image: primary
+    container_name: primary
+    restart: always
+    build:
+      context: ./primary
+      target: development
+      dockerfile: dockerfile
+    ports:
+      - 3001:3001
+    volumes:
+      - ./primary:/usr/local/apps/primary/dev
+      - exclude:/usr/local/apps/primary/dev/node_modules/
+
+  secondary:
+    image: secondary
+    container_name: secondary
+    restart: always
+    build:
+      context: ./secondary
+      target: development
+      dockerfile: dockerfile
+    ports:
+      - 3002:3002
+    volumes:
+      - ./secondary:/usr/local/apps/secondary/dev
+      - exclude:/usr/local/apps/secondary/dev/node_modules/
+
+volumes:
+  exclude:
