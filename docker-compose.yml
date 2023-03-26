@@ -24,7 +24,7 @@ services:
     container_name: primary
     restart: always
     build:
-      context: ./primary
+      context: ./primary-microservice
       target: development
       dockerfile: dockerfile
     ports:
@@ -38,7 +38,7 @@ services:
     container_name: secondary
     restart: always
     build:
-      context: ./secondary
+      context: ./secondary-microservice
       target: development
       dockerfile: dockerfile
     ports:
@@ -52,7 +52,7 @@ services:
     container_name: grpc
     restart: always
     build:
-      context: ./grpc
+      context: ./grpc-microservice
       target: development
       dockerfile: dockerfile
     ports:
