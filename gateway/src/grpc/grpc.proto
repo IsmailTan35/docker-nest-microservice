@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package grpc;
+
+service GrpcService {
+  rpc FindOne (GrpcById) returns (Grpc) {}
+}
+
+message GrpcById {
+  int32 id = 1;
+}
+
+message Grpc {
+  int32 id = 1;
+  string name = 2;
+}

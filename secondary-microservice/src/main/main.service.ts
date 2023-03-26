@@ -1,5 +1,6 @@
 export class MainService {
-  getHello(): string {
+  getHelloFromSecondary(data: string): string {
+    console.log(data);
     return 'Hello World!';
   }
 }

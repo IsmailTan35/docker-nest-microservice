@@ -1,8 +1,11 @@
-import { Get } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
+import { PrimaryService } from './primary.service';
 
+@Controller('primary')
 export class PrimaryController {
+  constructor(private readonly primaryService: PrimaryService) {}
   @Get()
-  getHello(): string {
-    return 'Hello World!';
+  getHello() {
+    return this.primaryService.getHello();
   }
 }

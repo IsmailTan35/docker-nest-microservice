@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ClientProxy, ClientsModule, Transport } from '@nestjs/microservices';
+import { ClientsModule, Transport } from '@nestjs/microservices';
 import { SecondaryController } from './secondary.controller';
 import { SecondaryService } from './seondary.service';
 

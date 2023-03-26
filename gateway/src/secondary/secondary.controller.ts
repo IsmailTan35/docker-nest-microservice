@@ -1,8 +1,14 @@
-import { Get } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
+import { Inject } from '@nestjs/common/decorators';
+import { ClientProxy } from '@nestjs/microservices';
+import { SecondaryService } from './seondary.service';
 
+@Controller('secondary')
 export class SecondaryController {
-  @Get('secondary')
-  getSecondary(): string {
-    return 'Secondary';
+  constructor(private readonly secondaryService: SecondaryService) {}
+
+  @Get()
+  getSecondary() {
+    return this.secondaryService.getHello();
   }
 }

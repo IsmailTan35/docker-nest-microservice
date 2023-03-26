@@ -1,11 +1,13 @@
-import { Get } from '@nestjs/common';
+import { Controller } from '@nestjs/common';
+import { EventPattern, MessagePattern } from '@nestjs/microservices';
 import { MainService } from './main.service';
 
+@Controller()
 export class MainController {
   constructor(private readonly mainService: MainService) {}
 
-  @Get()
-  getHello(): string {
-    return this.mainService.getHello();
+  @MessagePattern({ cmd: 'getHello' })
+  getHello(data: string): string {
+    return this.mainService.getHelloFromSecondary(data);
   }
 }

@@ -13,7 +13,8 @@ services:
       - 3000:3000
     depends_on:
       - primary
-      -secondary
+      - secondary
+      - grpc
     volumes:
       - ./gateway:/usr/local/apps/gateway/dev
       - exclude:/usr/local/app/gateway/dev/node_modules/
@@ -46,5 +47,18 @@ services:
       - ./secondary:/usr/local/apps/secondary/dev
       - exclude:/usr/local/apps/secondary/dev/node_modules/
 
+  grpc:
+    image: grpc
+    container_name: grpc
+    restart: always
+    build:
+      context: ./grpc
+      target: development
+      dockerfile: dockerfile
+    ports:
+      - 3002:3002
+    volumes:
+      - ./grpc:/usr/local/apps/grpc/dev
+      - exclude:/usr/local/apps/grpc/dev/node_modules/
 volumes:
   exclude:
