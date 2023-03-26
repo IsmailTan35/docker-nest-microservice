@@ -56,7 +56,7 @@ services:
       target: development
       dockerfile: dockerfile
     ports:
-      - 3002:3002
+      - 3003:3003
     volumes:
       - ./grpc:/usr/local/apps/grpc/dev
       - exclude:/usr/local/apps/grpc/dev/node_modules/
